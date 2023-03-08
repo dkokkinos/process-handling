@@ -36,6 +36,7 @@ namespace Process.Host
                 startInfo.Arguments = string.Join(" ", _args.Select(x => $"-{x.Key} {x.Value}"));
 
             var process = _Process.Start(startInfo);
+            process.WaitForExit();
             var output = process.StandardOutput.ReadToEnd();
 
             var exitCode = process.ExitCode;
